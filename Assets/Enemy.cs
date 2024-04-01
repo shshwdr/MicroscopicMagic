@@ -15,6 +15,12 @@ public class Enemy : HPObject
          }
     }
 
+    protected override void Die()
+    {
+        base.Die();
+        GameObject.FindObjectOfType<LevelManager>().KillEnemy(1);
+    }
+
     public void Init()
     {
     }

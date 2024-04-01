@@ -5,7 +5,7 @@ using UnityEngine;
 public class DraggingManager : MonoBehaviour
 {
     public GameObject draggingItem;
-    
+    public GameObject upgradeUI;
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
@@ -32,13 +32,15 @@ public class DraggingManager : MonoBehaviour
                 if (hit.collider.gameObject.CompareTag("Cell"))
                 {
                     draggingItem = hit.collider.gameObject;
+                    draggingItem.transform.parent = transform.parent;
+                    GameObject.FindObjectOfType<UpgradeSelectObject>().Hide(draggingItem);
                 }
             }
 
             
         }
 
-        if (Input.GetMouseButtonUp(0))
+        if (Input.GetMouseButtonUp(0) && draggingItem!=null)
         {
             var distanceToAttach = 0.5f;
             GameObject selectedAttachment = null;
