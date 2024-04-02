@@ -22,8 +22,9 @@ public class Enemy : HPObject
     {
     }
 
-    private void Update()
+   protected override void Update()
     {
+        base.Update();
          if (!isDead)
          {
              var targetPosition = GameObject.FindGameObjectWithTag("Player").transform.position;

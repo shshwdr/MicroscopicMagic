@@ -13,7 +13,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 779471815710261896, guid: 631d76eec6ab4ef43bede2ff44893e63, type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 779471815710261897, guid: 631d76eec6ab4ef43bede2ff44893e63, type: 3}
       propertyPath: m_Color.b
@@ -22,6 +22,10 @@ PrefabInstance:
     - target: {fileID: 779471815710261897, guid: 631d76eec6ab4ef43bede2ff44893e63, type: 3}
       propertyPath: m_Color.g
       value: 0.76792455
+      objectReference: {fileID: 0}
+    - target: {fileID: 779471815710261897, guid: 631d76eec6ab4ef43bede2ff44893e63, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 779471815710262006, guid: 631d76eec6ab4ef43bede2ff44893e63, type: 3}
       propertyPath: m_RootOrder
@@ -41,7 +45,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 779471815710262006, guid: 631d76eec6ab4ef43bede2ff44893e63, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.41
+      value: -4.1
       objectReference: {fileID: 0}
     - target: {fileID: 779471815710262006, guid: 631d76eec6ab4ef43bede2ff44893e63, type: 3}
       propertyPath: m_LocalPosition.z
@@ -75,6 +79,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6208114078513942837, guid: 631d76eec6ab4ef43bede2ff44893e63, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6208114078513942837, guid: 631d76eec6ab4ef43bede2ff44893e63, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6506578581134676518, guid: 631d76eec6ab4ef43bede2ff44893e63, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 1b8a980cd06ce254e9b84d88ac9722d2, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 631d76eec6ab4ef43bede2ff44893e63, type: 3}
 --- !u!1 &4211433877918545232 stripped
@@ -95,5 +111,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bloodPrefab: {fileID: 6125524856071807039, guid: c5ec1dbc18374bb4e9121d1431615ab9, type: 3}
-  generateBloodTime: 1
-  generateBloodTimer: 0
+  generateBloodTime: 3

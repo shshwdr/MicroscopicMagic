@@ -268,10 +268,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dfffc1d129c6b046aa8391e8d8481fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageNumber: {fileID: 2031936969923609714, guid: 3c06effecbbff514584a48b1f85d8bd2, type: 3}
   maxHP: 30
   isDead: 0
   poisonTime: 1
   poisonTimer: 0
+  damageNumberPopupTime: 0.2
+  damageNumberPopupTimer: 0
   poisionGO: {fileID: 7996098732902347980}
   moveSpeed: 0.3
 --- !u!61 &435139704

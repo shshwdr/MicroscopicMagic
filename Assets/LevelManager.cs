@@ -15,9 +15,9 @@ public class LevelManager : MonoBehaviour
         currentKillCount += amount;
         if (currentKillCount >= levelupCount[currentLevel])
         {
+            Levelup();
             currentLevel++;
             currentKillCount = 0;
-            Levelup();
         }
 
     }

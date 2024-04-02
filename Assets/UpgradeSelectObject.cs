@@ -28,17 +28,45 @@ public class UpgradeSelectObject : MonoBehaviour
        // Show(0);
     }
 
-    public void Show(int level)
+    private int level = 0;
+    public void Show(int l)
     {
+        if (l == 0)
+        {
+            TutorialManager.Instance.finishTutorial("afterFirstDrag");
+            TutorialManager.Instance.startTutorial("levelup1");
+        }else if (l == 1)
+        {
+            TutorialManager.Instance.finishTutorial("afterLevelup1");
+            TutorialManager.Instance.startTutorial("levelup2");
+        }
+        else
+        {
+            
+            TutorialManager.Instance.finishTutorial("afterLevelup2");
+        }
+
+        level = l;
         selectUI.SetActive(true);
-        showOne(0);
-        showOne(1);
+        showOne(l,0);
+        showOne(l,1);
         Time.timeScale = 0;
         Debug.Log("time scale is 0");
     }
 
     public void Hide(GameObject go)
     {
+        
+        if (level == 0)
+        {
+            TutorialManager.Instance.finishTutorial("levelup1");
+            TutorialManager.Instance.startTutorial("afterLevelup1");
+        }else if (level == 1)
+        {
+            TutorialManager.Instance.finishTutorial("levelup2");
+            TutorialManager.Instance.startTutorial("afterLevelup2");
+        }
+        
         int layer = LayerMask.NameToLayer("Default");
         if ((go.layer == layer))
         {
@@ -68,9 +96,31 @@ public class UpgradeSelectObject : MonoBehaviour
         Debug.Log("time scale is 1");
     }
 
-    void showOne(int i )
+    void showOne(int level,int i )
     {
         var rand = Random.Range(0, (int)CellType.None);
+        if (this.level == 0)
+        {
+            if (i == 0)
+            {
+                rand = (int)CellType.ShootCell;
+            }
+            else
+            {
+                rand = (int)CellType.AoeCell;
+            }
+        }else if (this.level == 1)
+        {
+            
+            if (i == 0)
+            {
+                rand = (int)CellType.IncreaseDamageCell;
+            }
+            else
+            {
+                rand = (int)CellType.IncreaseCountCell;
+            }
+        }
         var cellCell = cellCells[i];
         var trans = cellCell.cellTrans;
         cellCell.description.text = descriptions[rand];

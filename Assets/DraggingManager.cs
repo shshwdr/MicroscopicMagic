@@ -34,7 +34,6 @@ public class DraggingManager : MonoBehaviour
                     draggingItem = hit.collider.gameObject;
                     draggingItem.transform.parent = transform.parent;
                     GameObject.FindObjectOfType<UpgradeSelectObject>().Hide(draggingItem);
-                    TutorialManager.Instance.finishTutorial("drag");
                 }
             }
 
@@ -43,34 +42,24 @@ public class DraggingManager : MonoBehaviour
 
         if (Input.GetMouseButtonUp(0) && draggingItem!=null)
         {
-            var distanceToAttach = 0.5f;
-            GameObject selectedAttachment = null;
-            var minDistance = 10000f;
-            foreach (var outputAttachment in GameObject.FindGameObjectsWithTag("OutputAttachment"))
-            {
-                if (outputAttachment.transform.parent.parent == draggingItem.transform)
-                {
-                    continue;
-                }
 
-                if (outputAttachment.transform.childCount > 0)
-                {
-                    continue;
-                }
-                var distance = Vector2.Distance(outputAttachment.transform.position,
-                    draggingItem.GetComponent<Cell>().input.transform.position);
-                if (distance < distanceToAttach && distance < minDistance)
-                {
-                    selectedAttachment = outputAttachment;
-                    minDistance = distance;
-                }
-            }
+            var selectedAttachment = placeToGameObject();
 
+            draggingItem.GetComponentInChildren<SpriteRenderer>().color = Color.white;
             if (selectedAttachment != null)
             {
                 draggingItem.GetComponent<Cell>().input.GetComponent<Attachment>().AttachedTo( selectedAttachment.transform,draggingItem.GetComponent<Cell>().transform);
                 
                 draggingItem = null;
+                
+                
+                TutorialManager.Instance.finishTutorial("drag");
+                TutorialManager.Instance.startTutorial("afterFirstDrag");
+            }
+            else
+            {
+                
+                //draggingItem = null;
             }
 
             return;
@@ -85,6 +74,38 @@ public class DraggingManager : MonoBehaviour
             var position  = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             position.z = 0;
             draggingItem.transform.position = position;
+            
+            //render different color
+            draggingItem.GetComponentInChildren<SpriteRenderer>().color =
+                placeToGameObject() != null ? Color.green : Color.red;
         }
+    }
+
+    GameObject placeToGameObject()
+    {
+        var distanceToAttach = 0.5f;
+        GameObject selectedAttachment = null;
+        var minDistance = 10000f;
+        foreach (var outputAttachment in GameObject.FindGameObjectsWithTag("OutputAttachment"))
+        {
+            if (outputAttachment.transform.parent.parent == draggingItem.transform)
+            {
+                continue;
+            }
+
+            if (outputAttachment.transform.childCount > 0)
+            {
+                continue;
+            }
+            var distance = Vector2.Distance(outputAttachment.transform.position,
+                draggingItem.GetComponent<Cell>().input.transform.position);
+            if (distance < distanceToAttach && distance < minDistance)
+            {
+                selectedAttachment = outputAttachment;
+                minDistance = distance;
+            }
+        }
+
+        return selectedAttachment;
     }
 }

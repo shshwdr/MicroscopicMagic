@@ -23,7 +23,9 @@ public class EnemyGenerator : MonoBehaviour
          if (generateEnemyTimer >= generateEnemyTime)
         {
             generateEnemyTimer = 0f;
-            var enemyOB = Instantiate(enemyPrefab, transform.position, Quaternion.identity);
+            //random quaternion
+            var Quaternio = Quaternion.Euler(0, 0, Random.Range(0, 360));
+            var enemyOB = Instantiate(enemyPrefab, transform.position, Quaternio);
 
             var position = transform.position;
             position.x = Random.Range(minX, maxX);
