@@ -112,6 +112,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: input
       objectReference: {fileID: 0}
+    - target: {fileID: 2977493830203962047, guid: da93f83c4627e484ba371da56eb46394, type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4810199995434953437, guid: da93f83c4627e484ba371da56eb46394, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -188,6 +192,10 @@ PrefabInstance:
     - target: {fileID: 469727124023653243, guid: 32bb7a74197b5ec4ebe6e829428cc746, type: 3}
       propertyPath: m_TagString
       value: OutputAttachment
+      objectReference: {fileID: 0}
+    - target: {fileID: 2333009478538534248, guid: 32bb7a74197b5ec4ebe6e829428cc746, type: 3}
+      propertyPath: m_Color.a
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5472980169028109578, guid: 32bb7a74197b5ec4ebe6e829428cc746, type: 3}
       propertyPath: m_RootOrder

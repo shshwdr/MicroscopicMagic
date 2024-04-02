@@ -4,14 +4,14 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class AoeCellAbility : CellAbility
+public class AoeCellAbility : AttackCellAbility
 {
     public float radius = 2;
-    public int attack = 10;
     public GameObject aoeVisualization;
 
     public override void TriggerAbility(Blood blood)
     {
+        base.TriggerAbility(blood);
         var enemyCount = 0;
         //do damage to circle with radius 
         var enemies = GameObject.FindGameObjectsWithTag("Enemy").ToList();
@@ -95,8 +95,4 @@ public class AoeCellAbility : CellAbility
         }
     }
     
-     int attackValue(Blood blood)
-    {
-        return attack * (1 + blood.getAbilityTypeCount(AssistAbilityType.increaseDamage));
-    }
 }

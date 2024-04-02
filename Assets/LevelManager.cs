@@ -5,7 +5,7 @@ using UnityEngine;
 public class LevelManager : MonoBehaviour
 {
     
-    public List<int> levelupCount = new List<int>() { 1,/*1,1,1,*/5, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100 };
+     List<int> levelupCount = new List<int>() { 1,/*1,1,1,*/5, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100 };
 
     public int currentLevel = 0;
     public int currentKillCount = 0;

@@ -6,19 +6,16 @@ using UnityEngine;
 public class Enemy : HPObject
 {
     public float moveSpeed;
-    public void TakeDamage(int damage)
-    {
-         currentHP -= damage;
-         if (currentHP <= 0)
-         {
-             Die();
-         }
-    }
+   
 
     protected override void Die()
     {
-        base.Die();
-        GameObject.FindObjectOfType<LevelManager>().KillEnemy(1);
+        if (!isDead)
+        {
+            
+            base.Die();
+            GameObject.FindObjectOfType<LevelManager>().KillEnemy(1);
+        }
     }
 
     public void Init()

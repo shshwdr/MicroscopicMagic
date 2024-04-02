@@ -9,11 +9,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 779471815710261896, guid: 631d76eec6ab4ef43bede2ff44893e63, type: 3}
       propertyPath: m_Name
-      value: AoeCell (2)
+      value: AoeCell
       objectReference: {fileID: 0}
     - target: {fileID: 779471815710261897, guid: 631d76eec6ab4ef43bede2ff44893e63, type: 3}
       propertyPath: m_Color.b
-      value: 0.9951416
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 779471815710261897, guid: 631d76eec6ab4ef43bede2ff44893e63, type: 3}
       propertyPath: m_Color.g
@@ -21,7 +21,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 779471815710261897, guid: 631d76eec6ab4ef43bede2ff44893e63, type: 3}
       propertyPath: m_Color.r
-      value: 0.5251572
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 779471815710262006, guid: 631d76eec6ab4ef43bede2ff44893e63, type: 3}
       propertyPath: m_RootOrder

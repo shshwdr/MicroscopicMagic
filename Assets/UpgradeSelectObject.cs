@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public enum CellType{ShootCell, AoeCell, IncreaseDamageCell, IncreaseCountCell,None}
+public enum CellType{ShootCell, AoeCell, IncreaseDamageCell, IncreaseCountCell,PoisonCell,RotateCell,None}
 
 
 public class UpgradeSelectObject : MonoBehaviour
@@ -14,16 +14,18 @@ public class UpgradeSelectObject : MonoBehaviour
     public Camera uiCamera;
     public GameObject selectUI;
 
-    public List<string> descriptions = new List<string>()
+    List<string> descriptions = new List<string>()
     {
         "Shoot",
         "Aoe",
         "Increase Damage",
-        "Increase Count"
+        "Increase Count",
+        "Poison",
+        "Rotate"
     };
     private void Start()
     {
-        Show(0);
+       // Show(0);
     }
 
     public void Show(int level)

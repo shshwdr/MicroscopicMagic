@@ -34,6 +34,7 @@ public class DraggingManager : MonoBehaviour
                     draggingItem = hit.collider.gameObject;
                     draggingItem.transform.parent = transform.parent;
                     GameObject.FindObjectOfType<UpgradeSelectObject>().Hide(draggingItem);
+                    TutorialManager.Instance.finishTutorial("drag");
                 }
             }
 

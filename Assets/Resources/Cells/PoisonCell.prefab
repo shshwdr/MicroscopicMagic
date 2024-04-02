@@ -9,7 +9,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 779471815710261896, guid: 631d76eec6ab4ef43bede2ff44893e63, type: 3}
       propertyPath: m_Name
-      value: IncreaseCountCell
+      value: PoisonCell
       objectReference: {fileID: 0}
     - target: {fileID: 779471815710261897, guid: 631d76eec6ab4ef43bede2ff44893e63, type: 3}
       propertyPath: m_Color.b
@@ -70,7 +70,7 @@ PrefabInstance:
     - target: {fileID: 6506578581134676518, guid: 631d76eec6ab4ef43bede2ff44893e63, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: a7074cbdc79d71b4cb45e5db7689c895, type: 3}
+      objectReference: {fileID: 21300000, guid: 96c425f350b64e1469cfb26bcab47e3d, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 631d76eec6ab4ef43bede2ff44893e63, type: 3}
 --- !u!1 &4211433877918545232 stripped
@@ -90,4 +90,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0905461cd10c3748bf52319f685ccac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  assistAbility: 0
+  assistAbility: 2

@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
 
-public class BulletCellAbility : CellAbility
+public class BulletCellAbility : AttackCellAbility
 {
     public GameObject Bullet;
 
-    public int attack = 10;
     // Start is called before the first frame update
     public override void TriggerAbility(Blood blood)
     {
+        base.TriggerAbility(blood);
         //sort enemy by distance
         var enemies = new List<GameObject>();
         foreach (var enemy in GameObject.FindGameObjectsWithTag("Enemy"))
@@ -49,7 +49,7 @@ public class BulletCellAbility : CellAbility
             bullet.transform.position = transform.position;
             var forward = enemies[i].transform.position - bullet.transform.position;
         
-            bullet.GetComponent<Bullet>().Init(forward, attackValue(blood));
+            bullet.GetComponent<Bullet>().Init(forward, attackValue(blood),blood);
         }
 
         blood.clearAssistAbilities();
@@ -65,8 +65,4 @@ public class BulletCellAbility : CellAbility
     }
     
     
-    int attackValue(Blood blood)
-    {
-        return attack * (1 + blood.getAbilityTypeCount(AssistAbilityType.increaseDamage));
-    }
 }
