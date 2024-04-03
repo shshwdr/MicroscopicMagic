@@ -11,7 +11,7 @@ public class TutorialText : MonoBehaviour
 
     private void Awake()
     {
-        gameObject.SetActive(key == "drag");
+        //gameObject.SetActive(key == "drag");
     }
 
     // Start is called before the first frame update

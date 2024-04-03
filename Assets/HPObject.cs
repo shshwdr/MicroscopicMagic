@@ -25,6 +25,7 @@ public class HPObject : MonoBehaviour
     public float damageNumberPopupTimer = 0;
 
     public GameObject poisionGO;
+    public GameObject deathGO;
     public void ApplyEffect(EffectType type, int charge)
     {
         if (effects.ContainsKey(type))
@@ -46,6 +47,10 @@ public class HPObject : MonoBehaviour
     }
     public void TakeDamage(int damage)
     {
+        //gameObject.transform.DOPunchScale(new Vector3(0.5f, 0.5f, 0.5f), 0.2f);
+        
+        gameObject.transform.localScale = Vector3.one * 0.5f;
+        gameObject.transform.DOScale(Vector3.one * 0.4f, 0.15f).SetLoops(2, LoopType.Yoyo);
         storeDamageNumber(damage);
         currentHP -= damage;
         if (currentHP <= 0)
@@ -74,20 +79,21 @@ public class HPObject : MonoBehaviour
         }
     }
 
-    protected virtual void   Start()
-     {
-         currentHP = maxHP;
-     }
 
      protected virtual void Die()
      {
          isDead = true;
+         if (deathGO)
+         {
+             Instantiate(deathGO,transform.position,transform.rotation);
+         }
          Destroy(gameObject);
          if (damages.Count > 0)
          {
              
              showDamageNumber();
          }
+         
      }
 
      private List<int> damages = new  List<int>();

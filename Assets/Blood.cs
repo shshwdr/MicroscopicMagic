@@ -7,6 +7,7 @@ public class Blood : MonoBehaviour
 {
     private HashSet<Cell> cells = new HashSet<Cell>();
     public Cell nextCell;
+    public Cell previousCell;
     public float moveSpeed = 1f;
     float proximityThreshold = 0.01f; // Adjust this value according to your needs
     [HideInInspector] public List<AssistAbilityType> assistAbilities = new List<AssistAbilityType>();
@@ -39,7 +40,10 @@ public class Blood : MonoBehaviour
                 if (!cells.Contains(outputCell))
                 {
                     cells.Add(outputCell);
+                    previousCell = nextCell;
                     nextCell = outputCell;
+                    transform.parent = previousCell.transform;
+                    
                     return;
                 }
 
@@ -74,6 +78,17 @@ public class Blood : MonoBehaviour
         if (nextCell != null)
         {
 
+            if (nextCell.gameObject == DraggingManager.Instance.draggingItem)
+            {
+                Destroy(gameObject);
+            }
+            if (previousCell.gameObject == DraggingManager.Instance.draggingItem)
+            {
+                Destroy(gameObject);
+            }
+            
+            
+
             var targetPosition = nextCell.input.transform.position;
             
             transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
@@ -86,6 +101,9 @@ public class Blood : MonoBehaviour
             //{
             nextCell.GetComponent<CellAbility>()?.TriggerAbility(this);
                 GenerateNextPath(nextCell);
+                
+                
+                
             }
         }
     }

@@ -1,13 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class Cell : MonoBehaviour
+public class Cell : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
 {
+    
     public List<Tube> tubes;
 
     public GameObject input;
-    public CellType cellAbility;
+    public int cellAbility;
+    public GameObject renderer;
 
     public void updateTube(int tubeCount)
     {
@@ -57,5 +60,14 @@ public class Cell : MonoBehaviour
     {
         
     }
-    
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+       // InfoManager.Instance.Show(cellAbility);
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+       // InfoManager.Instance.Hide();
+    }
 }

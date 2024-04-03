@@ -9,6 +9,7 @@ public class AssistCellAbility : CellAbility
     public AssistAbilityType assistAbility;
     public override void TriggerAbility(Blood blood)
     {
+        base.TriggerAbility(blood);
         blood.addAssistAbility(assistAbility);
     }
 }

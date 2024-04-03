@@ -8,6 +8,7 @@ public class AoeCellAbility : AttackCellAbility
 {
     public float radius = 2;
     public GameObject aoeVisualization;
+    public GameObject poisonAreaPrefab;
 
     public override void TriggerAbility(Blood blood)
     {
@@ -38,6 +39,17 @@ public class AoeCellAbility : AttackCellAbility
             var visualization =  Instantiate(aoeVisualization);
             visualization.transform.position = transform.position;
             visualization.transform.localScale = Vector3.one * radius*2;
+            
+            
+            var poison = blood.getAbilityTypeCount(AssistAbilityType.poison);
+            if (poison > 0)
+            {
+                
+                var poisonArea =  Instantiate(poisonAreaPrefab);
+                poisonArea.GetComponent<PoisonArea>().attack = poison;
+                poisonArea.transform.position = transform.position;
+                poisonArea.transform.localScale = Vector3.one * radius*2;
+            }
             
             
             
@@ -92,6 +104,16 @@ public class AoeCellAbility : AttackCellAbility
             var visualization =  Instantiate(aoeVisualization);
             visualization.transform.position = pickedEnemy.transform.position;
             visualization.transform.localScale = Vector3.one * radius*2;
+            
+            var poison = blood.getAbilityTypeCount(AssistAbilityType.poison);
+            if (poison > 0)
+            {
+                
+                var poisonArea =  Instantiate(poisonAreaPrefab);
+                poisonArea.GetComponent<PoisonArea>().attack = poison;
+                visualization.transform.position = transform.position;
+                visualization.transform.localScale = Vector3.one * radius*2;
+            }
         }
     }
     

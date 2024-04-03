@@ -1,13 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class DraggingManager : MonoBehaviour
+public class DraggingManager : Singleton<DraggingManager>
 {
     public GameObject draggingItem;
     public GameObject upgradeUI;
+
+    public void stopDragging()
+    {
+        draggingItem = null;
+    }
     void Update()
     {
+        if (GameManager.Instance.isGameOver ==1)
+        {
+            return;
+        }
+        // if (UpgradeSelectObject.Instance.isShowing())
+        // {
+        //     return;
+        // }
+        //ignore UI
+        // if (EventSystem.current.IsPointerOverGameObject())
+        // {
+        //     return;
+        // }
         if (Input.GetMouseButtonDown(0))
         {
             // Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -33,7 +52,13 @@ public class DraggingManager : MonoBehaviour
                 {
                     draggingItem = hit.collider.gameObject;
                     draggingItem.transform.parent = transform.parent;
-                    GameObject.FindObjectOfType<UpgradeSelectObject>().Hide(draggingItem);
+                    
+                    int layer = LayerMask.NameToLayer("UIOB");
+                    if (hit.collider.gameObject.layer == layer)
+                    {
+                        
+                        GameObject.FindObjectOfType<UpgradeSelectObject>().Hide(draggingItem);
+                    }
                 }
             }
 
@@ -44,8 +69,9 @@ public class DraggingManager : MonoBehaviour
         {
 
             var selectedAttachment = placeToGameObject();
-
-            draggingItem.GetComponentInChildren<SpriteRenderer>().color = Color.white;
+            var color = Color.white;
+            color.a = 0;
+            draggingItem.GetComponentInChildren<SpriteRenderer>().color = color;
             if (selectedAttachment != null)
             {
                 draggingItem.GetComponent<Cell>().input.GetComponent<Attachment>().AttachedTo( selectedAttachment.transform,draggingItem.GetComponent<Cell>().transform);
@@ -76,8 +102,38 @@ public class DraggingManager : MonoBehaviour
             draggingItem.transform.position = position;
             
             //render different color
-            draggingItem.GetComponentInChildren<SpriteRenderer>().color =
-                placeToGameObject() != null ? Color.green : Color.red;
+            var color = placeToGameObject() != null ? Color.green : Color.red;
+            color.a = 0.5f;
+            draggingItem.GetComponentInChildren<SpriteRenderer>().color = color;
+               ;
+        }
+
+        if (draggingItem == null)
+        {
+            bool show = false;
+            Vector3 mousePosition = Input.mousePosition;
+
+// Create a 2D Ray from the main camera through the mouse position
+            RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(mousePosition), Vector2.zero);
+
+// Check if the raycast hits a collider tagged as "Cell"
+            if (hit)
+            {
+                if (hit.collider.GetComponent<Cell>()!=null)
+                {
+                    // draggingItem = hit.collider.gameObject;
+                    // draggingItem.transform.parent = transform.parent;
+                    // GameObject.FindObjectOfType<UpgradeSelectObject>().Hide(draggingItem);
+                    //
+                    show = true;
+                    InfoManager.Instance.Show(hit.collider.GetComponent<Cell>().cellAbility);
+                }
+            }
+
+            if (!show)
+            {
+                InfoManager.Instance.Hide();
+            }
         }
     }
 

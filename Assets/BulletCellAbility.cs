@@ -7,6 +7,8 @@ public class BulletCellAbility : AttackCellAbility
 {
     public GameObject Bullet;
 
+    public float attackRange = 5;
+
     // Start is called before the first frame update
     public override void TriggerAbility(Blood blood)
     {
@@ -50,6 +52,11 @@ public class BulletCellAbility : AttackCellAbility
             var forward = enemies[i].transform.position - bullet.transform.position;
         
             bullet.GetComponent<Bullet>().Init(forward, attackValue(blood),blood);
+
+            if (Vector3.Distance(enemies[i].transform.position, transform.position)>attackRange)
+            {
+                break;
+            }
         }
 
         blood.clearAssistAbilities();

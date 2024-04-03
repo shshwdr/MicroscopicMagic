@@ -67,6 +67,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 974189863902086122, guid: 631d76eec6ab4ef43bede2ff44893e63, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6208114078513942837, guid: 631d76eec6ab4ef43bede2ff44893e63, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6208114078513942837, guid: 631d76eec6ab4ef43bede2ff44893e63, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8045324371342459111, guid: 631d76eec6ab4ef43bede2ff44893e63, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 631d76eec6ab4ef43bede2ff44893e63, type: 3}
 --- !u!1 &4211433877918545232 stripped
@@ -86,6 +102,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abfc0d3b1f0ef8a409dbbbbc0a2e547c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 3
   attack: 10
+  currentRotate: 0
+  rotateTime: 10
+  rotateDegree: 30
+  radius: 3
   aoeVisualization: {fileID: 2092889433585512171, guid: d0cf53bb4ec63874abbce95986a6564d, type: 3}
+  poisonAreaPrefab: {fileID: 2092889433585512171, guid: 31e618102e85b1e48b421bae19ae615f, type: 3}

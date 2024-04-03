@@ -12,7 +12,6 @@ public class AttackCellAbility : CellAbility
     private int direction = 1;
     public float rotateTime = 10;
     public float rotateDegree = 30;
-    
     protected int attackValue(Blood blood)
     {
         return attack * (1 + blood.getAbilityTypeCount(AssistAbilityType.increaseDamage));
@@ -20,6 +19,8 @@ public class AttackCellAbility : CellAbility
 
     public override void TriggerAbility(Blood blood)
     {
+        base.TriggerAbility(blood);
+        
         //if blood has rotate, try rotate
         if (blood.getAbilityTypeCount(AssistAbilityType.rotate) > 0)
         {
@@ -35,5 +36,7 @@ public class AttackCellAbility : CellAbility
             }
             transform.DORotate(new Vector3(0, 0, rotateDegree*currentRotate), rotateTime);
         }
+
+
     }
 }

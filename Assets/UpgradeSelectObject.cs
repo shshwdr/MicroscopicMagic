@@ -7,30 +7,39 @@ using Random = UnityEngine.Random;
 public enum CellType{ShootCell, AoeCell, IncreaseDamageCell, IncreaseCountCell,PoisonCell,RotateCell,None}
 
 
-public class UpgradeSelectObject : MonoBehaviour
+public class UpgradeSelectObject : Singleton<UpgradeSelectObject>
 {
     public List<CellCell> cellCells;
     public List<Transform> uiOBParents;
     public Camera uiCamera;
     public GameObject selectUI;
-
-    List<string> descriptions = new List<string>()
+    public List<string> Description => descriptions;
+    private List<string> descriptions = new List<string>()
     {
-        "Shoot",
-        "Aoe",
-        "Increase Damage",
-        "Increase Count",
-        "Poison",
-        "Rotate"
+        "Phage Cell\nAttack Cell\nShoot virus bullet to do damage to cells ",
+        "Inflammatory Signaling Cell\nAttack Cell\nDo AOE damage on nearby area",
+        "Enzyme Catalyst Cell\nSupport Cell\nIncrease damage of next attack cell",
+        "Mitosis Cell\nSupport Cell\nIncrease attack count of next attack cells",
+        "Immunosuppressive Cell\nSupport Cell\nNext attack cell inflict damage over time",
+        "Flagellum Cell\nSupport Cell\nRotate next attack cell",
+        "This is me, the core. Don't let White Blood Cell touch me"
     };
     private void Start()
     {
        // Show(0);
     }
 
+    public bool isShowing()
+    {
+        return showing;
+    }
+
+    bool showing;
     private int level = 0;
     public void Show(int l)
     {
+        showing = true;
+        DraggingManager.Instance.stopDragging();
         if (l == 0)
         {
             TutorialManager.Instance.finishTutorial("afterFirstDrag");
@@ -56,12 +65,13 @@ public class UpgradeSelectObject : MonoBehaviour
 
     public void Hide(GameObject go)
     {
-        
-        if (level == 0)
+        showing = false;
+        LevelManager.Instance.UpdateProgress();
+        if (level == 0&&TutorialManager.Instance.hasFinishedTutorial("levelup1"))
         {
             TutorialManager.Instance.finishTutorial("levelup1");
             TutorialManager.Instance.startTutorial("afterLevelup1");
-        }else if (level == 1)
+        }else if (level == 1 &&TutorialManager.Instance.hasFinishedTutorial("levelup2"))
         {
             TutorialManager.Instance.finishTutorial("levelup2");
             TutorialManager.Instance.startTutorial("afterLevelup2");
@@ -139,6 +149,7 @@ public class UpgradeSelectObject : MonoBehaviour
         GameObject go = Instantiate(Resources.Load<GameObject>("Cells/"+randStr),uiOBParents[i]);
         //set layer of gameobject
         go.transform.localPosition = Vector2.zero;
+        go.GetComponent<Cell>().cellAbility = rand;
         int layer = LayerMask.NameToLayer("UIOB");
         if (layer == -1)
         {

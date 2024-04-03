@@ -55,6 +55,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 974189863902086122, guid: 631d76eec6ab4ef43bede2ff44893e63, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6208114078513942837, guid: 631d76eec6ab4ef43bede2ff44893e63, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6208114078513942837, guid: 631d76eec6ab4ef43bede2ff44893e63, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6506578581134676518, guid: 631d76eec6ab4ef43bede2ff44893e63, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -78,5 +90,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1af6d5633622d8e46a2c6ac04dd1400a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Bullet: {fileID: 7154768154778495336, guid: c38859620456dd541a3b706f2732880b, type: 3}
   attack: 10
+  currentRotate: 0
+  rotateTime: 10
+  rotateDegree: 30
+  Bullet: {fileID: 7154768154778495336, guid: c38859620456dd541a3b706f2732880b, type: 3}
+  attackRange: 5
